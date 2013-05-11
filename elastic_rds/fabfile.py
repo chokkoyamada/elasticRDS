@@ -6,11 +6,6 @@ from fabric.colors import *
 import json
 from time import sleep
 
-@task
-@runs_once
-def start():
-    print(red("hello"))
-
 def _get_conn():
     conn = boto.rds.connect_to_region("ap-northeast-1")
     return conn
@@ -18,15 +13,18 @@ def _get_conn():
 @task
 @runs_once
 def status(cluster_name=None):
+    """指定したクラスターのインスタンスの概要を表示する"""
     json_data = open("conf/rds_cluster_conf.json")
     data = json.load(json_data)
 
     print(green(cluster_name))
 
+    # masterの情報
     db_info = _get_conn().get_all_dbinstances(data[cluster_name]["master_node"]["instance_id"])[0]
     print(magenta("\tmaster"))
     print(cyan("\t\t%s\t%s\t%s" %(db_info.id, db_info.instance_class, db_info.status)))
 
+    # read replicaの情報
     print(magenta("\tread replica"))
     for replica_node in data[cluster_name]["replica_nodes"]:
         try:
@@ -114,8 +112,7 @@ def create_cluster(cluster_name, max_replica_num=None):
 @task
 @runs_once
 def modify_instance(instance_id, instance_class):
-    _get_conn().modify_dbinstance(
-        id=instance_id,
-        instance_class=instance_class,
-        apply_immediately=True)
+    """指定したインスタンスのクラスを変更する"""
+    _get_conn().modify_dbinstance(id=instance_id, instance_class=instance_class, apply_immediately=True)
+    print(green("Modifying %s instance class to %s" %(instance_id, instance_class)))
 
