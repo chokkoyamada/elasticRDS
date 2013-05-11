@@ -50,6 +50,18 @@
             {
                 "id": "cluster3s01",
                 "instance_class": "db.t1.micro"
+            },
+            {
+                "id": "cluster3s02",
+                "instance_class": "db.t1.micro"
+            },
+            {
+                "id": "cluster3s03",
+                "instance_class": "db.t1.micro"
+            },
+            {
+                "id": "cluster3s04",
+                "instance_class": "db.t1.micro"
             }
         ]
     }
