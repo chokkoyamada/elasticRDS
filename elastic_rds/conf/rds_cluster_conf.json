@@ -3,14 +3,14 @@
         "master_node": {
             "identifier": "cluster1m-snapshot01",
             "instance_id": "cluster1m01",
-            "instance_class": "db.t1.micro",
+            "instance_class": "db.m1.small",
             "multi_az": true
         },
         "replica_nodes": [
             {
                 "id": "cluster1s01",
                 "source_id": "cluster1m01",
-                "instance_class": "db.t1.micro"
+                "instance_class": "db.m1.small"
             },
             {
                 "id": "cluster1s02",
