@@ -1,27 +1,25 @@
 {
     "cluster1": {
         "master_node": {
-            "identifier": "cluster1m-snapshot01",
+            "identifier": "qiitabase201305111613",
             "instance_id": "cluster1m01",
-            "instance_class": "db.m1.small",
+            "instance_class": "db.t1.micro",
             "multi_az": true
         },
         "replica_nodes": [
             {
                 "id": "cluster1s01",
-                "source_id": "cluster1m01",
-                "instance_class": "db.m1.small"
+                "instance_class": "db.t1.micro"
             },
             {
                 "id": "cluster1s02",
-                "source_id": "cluster1m01",
                 "instance_class": "db.t1.micro"
             }
         ]
     },
     "cluster2": {
         "master_node": {
-            "identifier": "cluster1m-snapshot01",
+            "identifier": "qiitabase201305111613",
             "instance_id": "cluster2m01",
             "instance_class": "db.t1.micro",
             "multi_az": true
@@ -29,12 +27,28 @@
         "replica_nodes": [
             {
                 "id": "cluster2s01",
-                "source_id": "cluster2m01",
                 "instance_class": "db.t1.micro"
             },
             {
                 "id": "cluster2s02",
-                "source_id": "cluster2m01",
+                "instance_class": "db.t1.micro"
+            },
+            {
+                "id": "cluster2s03",
+                "instance_class": "db.t1.micro"
+            }
+        ]
+    },
+    "cluster3": {
+        "master_node": {
+            "identifier": "qiitabase201305111613",
+            "instance_id": "cluster3m01",
+            "instance_class": "db.t1.micro",
+            "multi_az": true
+        },
+        "replica_nodes": [
+            {
+                "id": "cluster3s01",
                 "instance_class": "db.t1.micro"
             }
         ]

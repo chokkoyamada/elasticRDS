@@ -100,7 +100,7 @@ def create_cluster(cluster_name, max_replica_num=None):
                     else:
                         print(cyan("read replica node %s is already launched." %replica_config["id"]))
             except BotoServerError:
-                _get_conn().create_dbinstance_read_replica(**replica_config)
+                _get_conn().create_dbinstance_read_replica(source_id=master_config["instance_id"], **replica_config)
 
             while True:
                 db_info = _get_conn().get_all_dbinstances(replica_config["id"])[0]
@@ -114,5 +114,8 @@ def create_cluster(cluster_name, max_replica_num=None):
 @task
 @runs_once
 def modify_instance(instance_id, instance_class):
-    pass
+    _get_conn().modify_dbinstance(
+        id=instance_id,
+        instance_class=instance_class,
+        apply_immediately=True)
 
